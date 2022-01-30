@@ -10,3 +10,5 @@
 - mutable => 딕셔너리 key 로 활용 x
 [] 튜플
 - immutable => 딕셔너리 key 로 활용 O
+- append, remove 같은 함수 쓸 수 없다
+- 소괄호를 굳이 쓰지 않아도 콤마로 원소를 나열하면 튜플로 자동 인식
