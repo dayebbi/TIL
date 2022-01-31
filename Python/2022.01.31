@@ -28,3 +28,4 @@
 5. datetime 형식 일자에서 월만 추출
  - from datetime import date
    df['월'] = df['일자'].dt.month
+6. 시각화
