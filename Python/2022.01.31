@@ -1,0 +1,30 @@
+파이썬을 활용한 데이터 전처리 Level UP
+================================
+2022.01.30
+-----------
+# 데이터 전처리 실습하기
+## 월별매출데이터
+1. 엑셀파일 로드 : collections 모듈 - OrderedDict
+  dict_key 값이 sheename으로 지정됨
+ + 모든 sheet load(sheet_name=none)
+ + index_col=0
+ + header 지정
+ + 불필요 컬럼 지우기
+2. 엑셀파일 시트 병합
+ - df.keys() : sheetname 확인
+ - dict 타입 인덱싱을 통해 sheet별 결측치 및 사이즈 확인
+ - pd.concat(df, ignore_index=True)
+3. 일자 데이터 타입 변환
+ - str 형식 통잏 : df['일자'].str.replace('.','-')
+ - import datetime
+   df['일자'].apply(lambda x: datetime.datetime.strptime(x,'%Y-%m-%d'))
+4. 상품별 가격 정보 및 주문금액 추가
+ - series 형태로 변환하여 dict key 값 활용하기 위해 Transpose 형변환
+ - price.T
+ - price.to_dict()
+ - dict_price = price['가격']
+ - replace(dict_price): key값으로 매핑하여 value로 치환
+ - df['주문 금액'] = df['수량'] * df['품명'].replace(dict_price) * 1.1
+5. datetime 형식 일자에서 월만 추출
+ - from datetime import date
+   df['월'] = df['일자'].dt.month

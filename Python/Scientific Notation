@@ -1,0 +1,9 @@
+  import pandas as pd
+
+  # 과학적 표기법 대신 소수점 5자리까지 나타낸다.
+pd.set_option('display.float_format', '{:.2f}'.format) # 항상 float 형식으로
+pd.set_option('display.float_format', '{:.2e}'.format) # 항상 사이언티픽
+pd.set_option('display.float_format', '${:.2g}'.format)  # 적당히 알아서
+
+# 원래대로 옵션 복구
+pd.reset_option('display.float_format')
