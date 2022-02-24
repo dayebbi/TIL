@@ -1,3 +1,4 @@
+# SELECT
 SELECT 컬럼
         DISTINCT 컬럼 : 중복 제거
 FROM 테이블
@@ -14,5 +15,20 @@ WHERE 조건
             PRODUCT_NAME LIKE 'Asus%'
 
 ORDER BY 컬럼 ASC/DESC
-# 테이블 종류
-DUAL : 다양한 연산 가능(오라클 제공) 
+## 테이블 종류
+DUAL : 다양한 연산 가능(오라클 제공) ㅎ
+
+# INSERT
+INSERT INTO 테이블(컬럼) VALUES (삽입데이터);
+COMMIT;
+# UPDATE
+
+# DELETE
+
+# VIEW
+CREATE OR REPLACE VIEW 뷰이름 AS
+SELECT 절 시작
+
+# 서브쿼리
+SELECT 절 안에 SELECT문
+SELECT MAX(컬럼)
