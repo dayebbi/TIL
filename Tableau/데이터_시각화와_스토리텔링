@@ -49,3 +49,16 @@
 4. 스토리텔링
     - Explanatory Data Storytelling
     조직 내 커뮤니케이션을 위한 보고서형 스토리텔링 시각화
+
+### ****좋은 데이터 시각화를 위한 핵심공식****
+
+1. 데이터 잉크 비율 
+    
+    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/275b9a48-44ab-4b64-9b3c-1dfa0e3eed61/Untitled.png)
+    
+2. 시각 속성 활용하기
+    
+    위치>길이>방향>각도>면적>부피>채도
+    
+    👍 막대차트(길이)  
+    👎 파이 차트(각도) & 영역 차트(면적)
