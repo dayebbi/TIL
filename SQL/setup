@@ -1,0 +1,68 @@
+
+[Terminal]
+터미널 인용문 탈출 :  Ctrl(⌃) + c
+터미널에서 파이썬 Shell 종료 : exit()
+ip확인 
+: ping localhost
+: ifconfig | grep inet
+앱 열기(권한 부여)
+codesign --force --deep --sign - /Applications/DBeaver.app
+
+[Git]
+커밋시간 지정
+git commit --amend --no-edit --date 'Fri 11 Feb 2022 16:13:08 KST'
+
+[MySQL]
+cd /usr/local/mysql-8.0.28-macos11-x86_64/bin
+./mysql -u root -p fjgh1234 -e "show tables" -t > test.txt
+ID root
+PW fjgh1234
+grant all privileges on *.* to ‘ot’@‘localhost';
+
+앱 열기(권한 부여)
+codesign --force --deep --sign - /Applications/DBeaver.app
+
+[SQL]
+1. 다운로드 할 이미지 검색
+docker search oracle-xe-11g
+2. 이미지 다운로드
+docker pull jaspeen/oracle-xe-11g 
+3. 컨테이너 생성&실행&재사용경로설정
+docker run --name my_oracle -d -p 8080:8080 -p 1521:1521 -v /Users/dyrachelc/dev jaspeen/oracle-xe-11g
+
+4. 도커 접속
+docker exec -it my_oracle bin/bash
+docker start my_oracle
+
+5. SQLPlus 실행
+docker exec -i my_oracle sqlplus system/oracle
+docker exec -i my_oracle sqlplus system/oracle < /Users/dyrachelc/dev/oracle-sample-database/ot_create_user.sql
+
+Database 이름 검색: show parameter servie_names
+- User name : system
+- PW : oracle
+- PW 변경 주기 무기한 설정 : ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+CREATE USER OT IDENTIFIED BY 1234;
+GRANT CONNECT, RESOURCE, DBA TO IT;
+
+CREATE TABLESPACE OT_DATA datafile '/data/OT_DATA.dbf' SIZE 1G
+AUTOEXTEND ON NEXT 512M MAXSIZE UNLIMITED
+LOGGING
+ONLINE
+PERMANENT
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON;
+
+CREATE TEMPORARY TABLESPACE OT_TMP
+TEMPFILE '/data/OT_TMP.dbf' SIZE 100M
+AUTOEXTEND ON NEXT 100M MAXSIZE UNLIMITED;
+
+ALTER USER OT DEFAULT TABLESPACE OT_DATA;
+ALTER USER OT TEMPORARY TABLESPACE OT_TMP;
+
+wget --no-check-certificate -O demobld.sql 'https://drive.google.com/uc?export=download&id=19gam_n_5pXSTjrEwfbMA_YEgiU8g8f_E'
+
+

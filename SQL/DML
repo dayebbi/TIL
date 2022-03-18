@@ -1,0 +1,323 @@
+# **DML이란?**
+
+자료들을 입력, 수정, 삭제, 조회하는 명령어
+
+**<종류>**
+
+- INSERT
+- UPDATE
+- DELETE
+- SELECT
+
+# **1. INSERT**
+
+## INSERT문 기본 형태
+
+<aside>
+🛠 INSERT INTO 테이블명 (컬럼 리스트)
+VALUES (컬럼 리스트에 넣을 값);
+
+</aside>
+
+<aside>
+🛠 INSERT INTO 테이블명
+VALUES (체 칼럼에 넣을 값);
+
+</aside>
+
+- 해당 칼럼과 입력값을 1:1 매핑하여 입력한다.
+- 칼럼의 데이터가 문자 유형일 경우 '(single quotation)로 입력할 값 을 입력한다. 숫자일 경우 붙이지 않는다.
+
+**INSERT문 예제 1** (정의된 칼럼에 데이터 입력하기)
+
+```sql
+**INSERT INTO** PLAYER
+(PLAYER_ID, PLAYER_NAME, TEAM_ID, POSITION, HEIGHT, WEIGHT, BACK_NO)
+**VALUES** ('2002007', '박지성', 'K07', 'MF', 178, 73, 7);
+# 1개의 행이 만들어졌다.
+```
+
+![https://postfiles.pstatic.net/20151204_143/liberty264_1449236991342sa21P_JPEG/1.jpg?type=w3](https://postfiles.pstatic.net/20151204_143/liberty264_1449236991342sa21P_JPEG/1.jpg?type=w3)
+
+**INSERT문 예제 2** (칼럼 순서대로 입력하기)
+
+```sql
+INSERT INTO PLAYER
+VALUES ('2002010','이청용','K07','','BlueDragon','2002','MF','17',NULL, NULL,'1',180,69);
+#1개의 행이 만들어졌다.
+```
+
+![https://postfiles.pstatic.net/20151204_282/liberty264_1449237018607VtbxH_JPEG/2.jpg?type=w3](https://postfiles.pstatic.net/20151204_282/liberty264_1449237018607VtbxH_JPEG/2.jpg?type=w3)
+
+# **2. UPDATE**
+
+## UPDATE문 기본 형태
+
+<aside>
+🛠 UPDATE 테이블명
+SET 칼럼명 = 값;
+
+</aside>
+
+**UPDATE문 예제 1** (선수 테이블의 백넘버를 일괄적으로 99로 수정)
+
+**UPDATE** PLAYER
+
+**SET** BACK_NO = 99;
+
+480개의 행이 수정되었다.
+
+<!--[endif]-->
+
+# **3. DELETE**
+
+## DELETE문 기본 형태
+
+<aside>
+🛠 DELETE [FROM](http://bysql.net//index.php?mid=W201102S&entry=FROM) 테이블명;
+
+</aside>
+
+**DELETE문 예제** (선수 테이블 삭제하기)
+
+```sql
+**DELETE FROM** PLAYER;
+```
+
+480개의 행이 삭제되었다.
+
+# **4. SELECT**
+
+## SELECT 기본 형태
+
+<aside>
+🛠 SELECT [ALL/DISTINCT](http://bysql.net//index.php?mid=W201102S&entry=ALL%2FDISTINCT) 칼럼, 칼럼, ...
+FROM 테이블명;
+
+</aside>
+
+- ALL : Default 옵션이므로 별도로 표시하지 않아도 된다. 중복된 데이터가 있어도 모두 출력한다.
+
+- DISTINCT : 중복된 데이터가 있는 경우 1건으로 처리해서 출력한다.
+
+**SELECT문 예제** (선수들 정보 조회하기)
+
+```sql
+**SELECT** PLAYER_ID, PLAYER_NAME, TEAM_ID, POSITION, HEIGHT, WEIGHT, BACK_NO
+**FROM** PLAYER;
+```
+
+<실행결과>
+
+PLAYER_ID PLAYER_NAME TEAM_ID POSITION BACK_NO HEIGHT WEIGHT
+
+- ------- ---------- ------ ------ ------- ----- ------
+
+2007155      정경량               K05         MF           19            173       65
+
+2010025      정은익               K05         MF           35            176       63
+
+2012001      레오마르            K05         MF            5             183      77
+
+：            ：                    ：          ：            ：               ：      ：
+
+480개의 행이 선택되었다.
+
+# ※ 옵션
+
+## 1) **DISTINCT 옵션**
+
+ (선수 테이블의 포지션 정보늘 ALL과 DISTINCT 옵션으로 확인하기)
+
+**<ALL 예제>**
+
+```sql
+SELECT ALL POSITION    # (ALL 생략가능)
+FROM    PLAYER;
+```
+
+POSITION
+
+- -----
+
+MF
+
+MF
+
+MF
+
+...
+
+SELECT POSITION FROM PLAYER;
+
+480개의 행이 선택되었다.
+
+**<DISTINCT 예제>**
+
+```sql
+SELECT DISTINCT POSITION
+FROM    PLAYER;
+```
+
+POSITION
+
+- -------
+
+GK
+
+DF
+
+FW
+
+MF
+
+5개의 행이 선택되었다.
+
+## 2) **WILDCARD(*)**
+
+모든 칼럼 정보를 조회할 경우 사용
+
+<예>
+
+SELECT  *****
+
+FROM     테이블명;
+
+## 3) **ALIAS 부여하기**
+
+- 조회된 결과에 별명(ALIAS, ALIASES)을 부여하여 칼럼 레이블을 변경할 수 있다.
+- 칼럼명 바로 뒤에 온다.
+- 칼럼명과 ALIAS 사이에 AS, as 키워드를 사용할 수 있다.
+- 이중 인용부호(Double quotation)는 ALIAS가 공백, 특수문자를 포함할 경우와 대소문자 구분이
+
+필요할 경우 사용된다.
+
+**ALIAS 예제**
+
+<SQL 예>
+
+```sql
+SELECT PLAYER_NAME **AS 선수명**, POSITION **AS 위치**, HEIGHT AS 키, WEIGHT AS 몸무게
+FROM    PLAYER;
+```
+
+칼럼 별명에서 AS를 꼭 사용하지 않아도 되므로, 아래 SQL은 위 SQL과 같은 결과를 출력한다.
+
+```sql
+SELECT PLAYER_NAME **선수명**, POSITION 위치, HEIGHT 키, WEIGHT 몸무게
+FROM    PLAYER;
+```
+
+<SQL 결과>
+
+선수명    위치     키     몸무게
+
+- ---- --- -- ----
+
+정경량     MF     173    65
+
+정은익     MF     176    63
+
+레오마르  MF     183    77
+
+：          ：        ：     ：
+
+480개의 행이 선택되었다.
+
+# **5. 산술 연산자와 합성 연산자**
+
+## **산술 연산자란?**
+
+산술 연산자는 NUMBER와 DATE 자료형에 적용
+
+수학에서의 4칙 연산과 동일
+
+산술 연산자는 수학에서와 같이 (), *, /, +, - 의 우선순위를 가진다.
+
+![https://postfiles.pstatic.net/20151204_114/liberty264_14492372747120Jp42_JPEG/3.jpg?type=w3](https://postfiles.pstatic.net/20151204_114/liberty264_14492372747120Jp42_JPEG/3.jpg?type=w3)
+
+**산술 연산자 활용 예 1**
+
+<SQL 예>
+
+```sql
+SELECT PLAYER_NAME 이름, HEIGHT - WEIGHT "키-몸무게"
+FROM    PLAYER;
+```
+
+<SQL 결과>
+
+이름  키-몸무게
+
+---   -------
+
+정경량 108.00
+
+정은익 113.00
+
+… …
+
+480개의 행이 선택되었다.
+
+**산술 연산자 활용 예 2**
+
+<SQL 예>
+
+```sql
+SELECT PLAYER_NAME 이름, ROUND(WEIGHT/((HEIGHT/100)*(HEIGHT/100)),2) "BMI 비만지수"
+FROM    PLAYER;
+```
+
+<SQL 결과>
+
+이름   BMI 비만지수
+
+정경량 21.72
+
+정은익 20.34
+
+… …
+
+480개의 행이 선택되었다.
+
+## **합성(CONCATENATION) 연산자 특징**
+
+- 문자와 문자를 연결하는 경우 **2개의 수빅 바(||)**에 의해 이뤄진다 (Oracle)
+- 문자와 문자를 연결하는 경우 **+** 표시에 의해 이뤄진다. (SQL Server)
+- 두 벤더 모두 공통적으로 **CONCAT (string1, string2)** 함수를 사용할 수 있다.
+- 칼럼과 문자 또는 다름 칼럼과 연결시킨다.
+- 문자 표현식의 결과에 의해 새로운 칼럼을 생성한다.
+
+**합성 연산자 예**
+
+<SQL 출력 형태>
+
+출력 형태) 선수명 선수, 키 cm, 몸무게 kg
+
+예) 박지성 선수, 176 cm, 70 kg
+
+<SQL 예 - Oracle>
+
+```sql
+SELECT PLAYER_NAME|| '선수,'||HEIGHT|| 'cm,'||WEIGHT|| 'kg' 체격정보
+FROM    PLAYER;
+```
+
+<SQL 예 - SQL Server>
+
+```sql
+SELECT PLAYER_NAME +'선수, '+HEIGHT +'cm, '+WEIGHT +'kg'체격정보
+FROM    PLAYER;
+```
+
+<SQL 결과>
+
+체격정보
+
+정경량선수,173cm,65kg
+
+정은익선수,176cm,63kg
+
+…
+
+480개의 행이 선택되었다.

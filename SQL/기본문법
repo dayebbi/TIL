@@ -1,0 +1,34 @@
+# SELECT
+SELECT 컬럼
+        DISTINCT 컬럼 : 중복 제거
+FROM 테이블
+WHERE 조건
+        ex) PRODUCT_NAME = 'Kingston',
+            LIST_PRICE > 500,
+
+            LIST_PRICE BETWEEN 650 AND 680,
+            LIST_PRICE >= 650 AND LIST_PRICE <= 680,
+
+            CATEGORY_ID IN (1, 4),
+            CATEGORY_ID = 1 OR CATEGORY_ID = 4,
+            
+            PRODUCT_NAME LIKE 'Asus%'
+
+ORDER BY 컬럼 ASC/DESC
+## 테이블 종류
+DUAL : 다양한 연산 가능(오라클 제공) ㅎ
+
+# INSERT
+INSERT INTO 테이블(컬럼) VALUES (삽입데이터);
+COMMIT;
+# UPDATE
+
+# DELETE
+
+# VIEW
+CREATE OR REPLACE VIEW 뷰이름 AS
+SELECT 절 시작
+
+# 서브쿼리
+SELECT 절 안에 SELECT문
+SELECT MAX(컬럼)
