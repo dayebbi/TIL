@@ -32,3 +32,20 @@
     **비즈니스 애널리스트의 역할**
 
 액션 가능한 인사이트를 찾고 현업 & 의사결정자와 커뮤니케이션
+
+### 실무 활용법
+
+1. 문제 정의
+    - Exploratory Data Analysis (EDA)
+    탐색적 데이터 분석을 위한 시각화
+2. 가설 검증
+    - A/B Testing - Conversion Rate
+    가설을 검증하기 위한 시각화
+    - Cohort Analysis - User Retention
+    가설을 검증하기 위한 시각화
+3. 모니터링
+    - Weekly Sales KPI Monitoring Dashboard
+    정기적인 모니터링을 위한 시각화
+4. 스토리텔링
+    - Explanatory Data Storytelling
+    조직 내 커뮤니케이션을 위한 보고서형 스토리텔링 시각화
